@@ -1,0 +1,33 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="moduleForm">
+
+            <input type="hidden" id="id" value="${module.id}">
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <#input id="modelName" name="模型名称" value="${module.modelName}" underline="true"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="useScope" name="使用范围" value="${module.useScope}" underline="true"/>
+                </div>
+                <div class="col-sm-4">
+                    <#input id="description" name="业务描述" value="${module.description}" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ModuleInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ModuleInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/requirement/module_info.js"></script>
+
+@}
+            

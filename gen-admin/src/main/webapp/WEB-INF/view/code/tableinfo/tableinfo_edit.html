@@ -1,0 +1,87 @@
+@layout("/common/_container.html"){
+<style>
+    .form-horizontal .form-group{margin: 0}
+</style>
+<ul id="tableNav" class="nav nav-tabs">
+    <li role="presentation" class="active" data-table="serviceConfigTable"><a href="#tableInfo" data-toggle="tab">表格</a></li>
+    <li role="presentation" data-table="tableField"><a href="#field" >属性设置</a></li>
+    <li role="presentation" data-table="tableForm"><a href="#form">表单配置</a></li>
+    <li role="presentation" data-table="tableList"><a href="#list" >列表配置</a></li>
+    <li role="presentation"  data-table="tableSearch"><a href="#search">查询配置</a></li>
+</ul>
+
+<div id="tableNavContent" class="tab-content form-horizontal">
+    <div class="tab-pane fade in active" id="tableInfo">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="form-inline">
+                    <input type="hidden" id="tableId" value="${tableinfo.id}">
+                    <div class="col-sm-12" style="margin-bottom: 20px">
+                        <div class="col-sm-3">
+                            <#input id="content" name="功能"  value="${tableinfo.content}"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <#input id="tableName" name="表名"  value="${tableinfo.tableName}"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <#input id="className" name="类名"  value="${tableinfo.className}"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline i-checks"><input id="isImport" type="checkbox" value="2">导入</label>
+                            <label class="checkbox-inline i-checks"><input id="isExport" type="checkbox" value="2">导出</label>
+                            <label class="checkbox-inline i-checks"><input id="isPagination" type="checkbox" value="2">分页</label>
+                            <label class="checkbox-inline i-checks"><input id="isLog" type="checkbox" value="2">日志</label>
+                            <label class="checkbox-inline i-checks"><input id="isProtocol" type="checkbox" value="2">协议</label>
+                        </div>
+                    </div>
+                    @include("/code/tableinfo/field/tableserviceconfig.html"){}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="field">
+        @include("/code/tableinfo/field/tablefield.html"){}
+    </div>
+    <div class="tab-pane fade" id="form">
+        @include("/code/tableinfo/form/table_form.html"){}
+    </div>
+    <div class="tab-pane fade" id="list">
+        @include("/code/tableinfo/list/table_list.html"){}
+    </div>
+    <div class="tab-pane fade" id="search">
+        @include("/code/tableinfo/search/table_search.html"){}
+    </div>
+</div>
+
+<footer>
+    <div class="row btn-group-m-t">
+        <div class="col-sm-10">
+            <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="TableInfoInfoDlg.editSubmit()"/>
+            <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="TableInfoInfoDlg.close()"/>
+        </div>
+    </div>
+</footer>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+</script>
+<script src="${ctxPath}/static/modular/code/tableinfo/tableinfo_info.js"></script>
+
+
+<script type="text/javascript">
+    let input = document.querySelector('#content')
+
+    input.addEventListener('dblclick', function (e) {
+        let ajax = new $ax("/dict/translate/"+ e.target.value, function (data) {
+            $('#tableName').val(data.underline);
+            $('#className').val(data.camel);
+        });
+        ajax.start();
+    })
+</script>
+@}

@@ -1,0 +1,69 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form">
+
+            <input type="hidden" id="id" value="">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input_margin id="templateName" name="名称" underline="true"/>
+                </div>
+
+                <div class="col-sm-6 ">
+                    <#input_margin id="templateDesc" name="描述" underline="true"/>
+                </div>
+                <div class="col-sm-6 b-r">
+                    <#input_margin id="fileName" name="文件名称" underline="true"/>
+                </div>
+                <div class="col-sm-6">
+                    <#input_margin id="templatePath" name="路径" underline="true"/>
+                </div>
+                <div class="col-sm-6">
+                    <#select id="groupId" name="组" underline="true">
+                    @ for(g in groups!){
+                    <option value="${g.id}">${g.name}</option>
+                    @}
+                </#select>
+            </div>
+                <div class="col-sm-6 b-r">
+                    <#input_margin id="localPath" name="本地路径" underline="true"/>
+                </div>
+            <div class="col-sm-6">
+                <#select id="fileType" name="文件类型" underline="true" value="${file.fileType!}">
+                <option value="Backend">后端</option>
+                <option value="Frontend">前端</option>
+                <option value="ApiDoc">接口文档</option>
+                <option value="ReqDoc">需求文档</option>
+            </#select>
+        </div>
+                <div class="col-sm-6  b-r">
+                    <#select id="templateType" name="类型" underline="true" >
+                        <option value="beetl">beetl</option>
+                        <option value="freeMarker">freeMarker</option>
+                    </#select>
+                </div>
+
+                <div class="col-sm-12">
+                    <textarea id="file" name="file" class="form-control"
+                              rows="15"></textarea>
+                    <pre  id="codeFile"  style="display:none;height: 310px;">
+                            <code class="${file.fileType!}">
+
+                            </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="TemplateInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="TemplateInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/code/template/template_info.js"></script>
+@}

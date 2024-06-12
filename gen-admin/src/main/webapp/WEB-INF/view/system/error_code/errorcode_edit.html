@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${errorcode.id}">
+
+            <div class="row">
+                <div class="col-sm-12 b-r">
+                    <#input id="cnText" name="中文,输入完中文后双击文本框，英文自动生成" underline="true" value="${errorcode.cnText}"/>
+                    <#input id="enText" name="英文" underline="true" value="${errorcode.enText}"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ErrorCodeInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ErrorCodeInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular//system/error_code/errorcode_info.js" ></script>
+<script type="text/javascript">
+    let input = document.querySelector('#cnText');
+    input.addEventListener('dblclick', function (e) {
+        let ajax = new $ax("/dict/translate/"+ e.target.value, function (data) {
+            $('#enText').val(data.underline);
+        });
+        ajax.start();
+    })
+</script>
+@}

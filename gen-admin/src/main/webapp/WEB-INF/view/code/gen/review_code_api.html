@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后端代码预览</title>
+    <link href="${ctxPath}/static/css/plugins/codemirror/codemirror.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/codemirror/ambiance.css" rel="stylesheet">
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/animate.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/jquery-treegrid/css/jquery.treegrid.css" rel="stylesheet"/>
+    <link href="${ctxPath}/static/css/plugins/highlight/github.css" rel="stylesheet"/>
+    <style>
+        .CodeMirror {
+            border: 1px solid #eee;
+            height: auto;
+            margin: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        前端接口代码片段
+    </div>
+    <div class="ibox-content">
+        <textarea id="code" > ${code} </textarea>
+    </div>
+</div>
+
+
+<script src="${ctxPath}/static/js/plugins/codemirror/codemirror.js"></script>
+<script src="${ctxPath}/static/js/plugins/codemirror/mode/javascript/javascript.js"></script>
+<script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+
+<script>
+    CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        styleActiveLine: true
+    });
+</script>
+
+<script>
+    $(function (){
+        $('#codeButton').click(function (){
+            download('code');
+        });
+    });
+
+    function download(docName) {
+        var fileName = getQueryParams('entityName');
+
+        var file = new File([CodeMirror.fromTextArea(document.getElementById(docName)).getValue()], fileName+".json", {
+            type: "text/plain",
+        });
+        const tmpLink = document.createElement("a");
+        const objectUrl = URL.createObjectURL(file);
+        tmpLink.href = objectUrl;
+        tmpLink.download = file.name;
+        document.body.appendChild(tmpLink);
+        tmpLink.click();
+        document.body.removeChild(tmpLink);
+        URL.revokeObjectURL(objectUrl);
+
+    }
+
+    function getQueryParams(param) {
+        var url =  window.location.href;
+        const paramArr = url.slice(url.indexOf("?") + 1).split("&");
+        const params = {};
+        paramArr.map((param) => {
+            const [key, val] = param.split("=");
+            params[key] = decodeURIComponent(val);
+        });
+        return params[param];
+    }
+</script>
+</body>
+
+</html>

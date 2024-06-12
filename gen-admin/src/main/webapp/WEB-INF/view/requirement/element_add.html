@@ -1,0 +1,73 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="elementForm">
+            <div class="row">
+                <input type="hidden" id="pageId" name="pageId"   value="${pageId}"  />
+                <div class="col-sm-6">
+                    <#input id="parentId" name="父级元素" underline="true"/>
+                </div>
+                <div class="col-sm-6">
+                    <#input id="elementName" name="元素名称" underline="true"/>
+                </div>
+                <div class="col-sm-6">
+                    <#select id="elementType" name="元素类型" underline="true">
+                        <option value="区域">区域</option>
+                        <option value="按钮">按钮</option>
+                        <option value="表格">表格</option>
+                        <option value="Tabs">Tabs</option>
+                        <option value="文本框">文本框</option>
+                        <option value="下拉框单选">下拉框单选</option>
+                        <option value="下拉框多选">下拉框单选</option>
+                        <option value="单选框">单选框</option>
+                        <option value="复选框">复选框</option>
+                        <option value="多行文本框">多行文本框</option>
+                        <option value="日期选择">日期选择</option>
+                        <option value="时间选择">日期选择</option>
+                        <option value="富文本框">富文本框</option>
+                        <option value="上传文件">上传文件</option>
+                    </#select>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label">数据来源：</label>
+                    <textarea id="dataSource" name="dataSource" class="form-control"></textarea>
+                    <span class="help-block m-b-none">手动添加、数据状态流转等</span>
+                    <div class="hr-line-dashed"></div>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label">元素规则：</label>
+                    <textarea id="elementRules" name="elementRules" class="form-control" ></textarea>
+                    <span class="help-block m-b-none">长度限制、最大值、最小值、全局唯一等</span>
+                    <div class="hr-line-dashed"></div>
+                </div>
+
+                <div class="col-sm-6">
+                    <#input id="dictName" name="字典名称" underline="true"/>
+                </div>
+                <div class="col-sm-6">
+                    <#select id="interactiveMethods" name="交互方式" underline="true">
+                        <option value="无">无</option>
+                        <option value="弹出框">弹出框</option>
+                        <option value="新页面">新页面</option>
+                    </#select>
+                </div>
+                <div class="col-sm-6">
+                    <#input id="triggerEvent" name="触发事件" underline="true"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row btn-group-m-t">
+            <div class="col-sm-10">
+                <#button btnCss="info" name="提交" id="ensure" icon="fa-check"
+                clickFun="ElementInfoDlg.addSubmit()"/>
+                <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser"
+                clickFun="ElementInfoDlg.close()"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<script src="${ctxPath}/static/modular/requirement/element_info.js"></script>
+@}

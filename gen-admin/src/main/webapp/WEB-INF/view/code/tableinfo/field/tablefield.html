@@ -1,0 +1,114 @@
+
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div id="fieldInfoDiv" class="form-horizontal row">
+            <div class="fixed-table-header col-sm-12" style="margin-right: 0px;">
+                <table id="tableField" class="table table-bordered" >
+                    <thead>
+                    <tr>
+                        <th style="text-align: center; vertical-align: middle;  ">
+                            <div class="th-inner "><span style="cursor:pointer;"
+                                                         class="glyphicon glyphicon-plus " onclick="TableField.fieldAdd()"></span>
+                            </div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; " data-field="order">
+                            <div class="th-inner ">顺序</div>
+
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="content">
+                            <div class="th-inner ">功能</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="fieldName">
+                            <div class="th-inner ">DB字段名</div>
+
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; " data-field="name">
+                            <div class="th-inner ">名称</div>
+
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; " data-field="type">
+                            <div class="th-inner ">类型</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @ for(tf in tableinfo.tableFields!){
+                    <tr id="fieldTr${tfLP.index}" class="fieldTr">
+                        <td style="display: none" type="hidden" data-field="id"><input style="display:none" type="text" class="form-control" name="id"  value="${tf.id}"></td>
+                        <td style="text-align: center; vertical-align: middle; " data-field="ignore">
+                            <div class="th-inner "><span style="cursor:pointer;"
+                                                         class="glyphicon glyphicon-minus fieldTrRemove"></span>
+                            </div>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle;width: 70px; "
+                            data-field="orderNum">
+                            <div class="td-inner "><input type="text" class="form-control" value="${tf.orderNum}"
+                                                          placeholder="排序"></div>
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="content">
+                            <div class="td-inner "><input type="text" class="form-control content" required
+                                                          placeholder="功能" value="${tf.content}"></div>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="fieldName">
+                            <div class="td-inner "><input type="text" class="form-control required" name="fieldName"
+                                                          placeholder="数据库字段名称" value="${tf.fieldName}"></div>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle; " data-field="name">
+                            <div class="td-inner "><input type="text" class="form-control required" name="name"
+                                                          placeholder="代码字段名称" value="${tf.name}"></div>
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle; " data-field="type">
+                            <div class="td-inner ">
+                                <#select value="${tf.type}" id="type_${tf.id}" class="form-control" >
+                                    <option value="String">String</option>
+                                     <option value="Boolean">Boolean</option>
+                                    <option value="Integer">Integer</option>
+                                    <option value="Float">Float</option>
+                                    <option value="Double">Double</option>
+                                    <option value="BigDecimal">BigDecimal</option>
+                                    <option value="Date">Date</option>
+                                    <option value="byte">byte</option>
+                                    <option value="byte[]">byte[]</option>
+                                    <option value="Object">Object</option>
+                                    <option value="Long">Long</option>
+                            </#select>
+                            </div>
+                        </td>
+                    </tr>
+                    @}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="${ctxPath}/static/modular/code/tablefield/tablefield.js"></script>
+
+<script type="text/javascript">
+    Array.prototype.forEach.call(document.getElementsByClassName('content'), function (inputField) {
+        inputField.addEventListener('dblclick', function (e) {
+            let ajax = new $ax("/dict/translate/"+ e.target.value, function (data) {
+                $(e.target).parent().parent().parent().find('input[name=fieldName]').val(data.underline)
+                $(e.target).parent().parent().parent().find('input[name=name]').val(data.lowCamel)
+            });
+
+            ajax.start();
+        })
+    });
+
+    $(document).ready(function(){
+        $("tr").click(
+            function() {
+                $(this).css("background","#f3f3f4").siblings().css("background","#ffffff");
+            });
+    });
+
+</script>
+</script>
