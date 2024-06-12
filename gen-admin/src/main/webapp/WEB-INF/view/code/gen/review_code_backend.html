@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后端代码预览</title>
+    <link href="${ctxPath}/static/css/plugins/codemirror/codemirror.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/codemirror/ambiance.css" rel="stylesheet">
+    <!-- 全局css -->
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/validate/bootstrapValidator.min.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/animate.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/_fstyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/webuploader/webuploader.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/ztree/zTreeStyle.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/jquery-treegrid/css/jquery.treegrid.css" rel="stylesheet"/>
+    <link href="${ctxPath}/static/css/plugins/highlight/github.css" rel="stylesheet"/>
+    <style>
+        .CodeMirror {
+            border: 1px solid #eee;
+            height: 200px;
+            margin: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="ibox float-e-margins" style="width: 50%">
+    <div class="ibox-title">
+        <a href="javascript:void(0);" id="codeControllerButton" > Controller 文件下载 </a>
+    </div>
+    <div class="ibox-content">
+        <textarea id="codeController" > ${codeController} </textarea>
+    </div>
+</div>
+
+<div class="ibox float-e-margins" style="width: 50%">
+    <div class="ibox-title">
+        <a href="javascript:void(0);"id="codeServiceButton" >  Service 文件下载 </a>
+    </div>
+    <div class="ibox-content">
+        <textarea id="codeService" > ${codeService} </textarea>
+    </div>
+</div>
+
+<div class="ibox float-e-margins" style="width: 50%">
+    <div class="ibox-title">
+        <a href="javascript:void(0);"id="codeServiceImplButton" >   ServiceImpl 文件下载 </a>
+    </div>
+    <div class="ibox-content">
+        <textarea id="codeServiceImpl" > ${codeServiceImpl} </textarea>
+    </div>
+</div>
+
+<div class="ibox float-e-margins" style="width: 50%">
+    <div class="ibox-title">
+        <a href="javascript:void(0);"id="codeMapperButton" >   Mapper 文件下载 </a>
+    </div>
+    <div class="ibox-content">
+        <textarea id="codeMapper" > ${codeMapper} </textarea>
+    </div>
+</div>
+
+<div class="ibox float-e-margins" style="width: 50%">
+    <div class="ibox-title">
+        <a href="javascript:void(0);"id="codeEntityButton" >   Entity 文件下载 </a>
+    </div>
+    <div class="ibox-content">
+        <textarea id="codeEntity" > ${codeEntity} </textarea>
+    </div>
+</div>
+
+<script src="${ctxPath}/static/js/plugins/codemirror/codemirror.js"></script>
+<script src="${ctxPath}/static/js/plugins/codemirror/mode/javascript/javascript.js"></script>
+<script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+
+<script>
+    CodeMirror.fromTextArea(document.getElementById("codeController"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        styleActiveLine: true
+    });
+    CodeMirror.fromTextArea(document.getElementById("codeService"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        styleActiveLine: true
+    });
+    CodeMirror.fromTextArea(document.getElementById("codeServiceImpl"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        styleActiveLine: true
+    });
+    CodeMirror.fromTextArea(document.getElementById("codeMapper"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        styleActiveLine: true
+    });
+    CodeMirror.fromTextArea(document.getElementById("codeEntity"), {
+        lineNumbers: true,
+        matchBrackets: true,
+        styleActiveLine: true
+    });
+</script>
+
+<script>
+    $(function (){
+       $('#codeControllerButton').click(function (){
+           download('codeController');
+       });
+
+        $('#codeServiceButton').click(function (){
+            download('codeService');
+        });
+
+        $('#codeServiceImplButton').click(function (){
+            download('codeServiceImpl');
+        });
+
+        $('#codeMapperButton').click(function (){
+            download('codeMapper');
+        });
+
+        $('#codeEntityButton').click(function (){
+            download('codeEntity');
+        });
+    });
+
+    function download(docName) {
+        var fileName = getQueryParams('entityName');
+        if (docName == 'codeController'){
+            fileName = fileName+"Controller";
+        }else if(docName == 'codeService'){
+            fileName = fileName+"Service";
+        }else if(docName == 'codeServiceImpl'){
+            fileName = fileName+"ServiceImpl";
+        }else if(docName == 'codeMapper'){
+            fileName = fileName+"Mapper";
+        }else if(docName == 'codeEntity'){
+            fileName = fileName;
+        }
+
+        var file = new File([CodeMirror.fromTextArea(document.getElementById(docName)).getValue()], fileName+".java", {
+            type: "text/plain",
+        });
+        const tmpLink = document.createElement("a");
+        const objectUrl = URL.createObjectURL(file);
+        tmpLink.href = objectUrl;
+        tmpLink.download = file.name;
+        document.body.appendChild(tmpLink);
+        tmpLink.click();
+        document.body.removeChild(tmpLink);
+        URL.revokeObjectURL(objectUrl);
+
+    }
+
+    function getQueryParams(param) {
+        var url =  window.location.href;
+        const paramArr = url.slice(url.indexOf("?") + 1).split("&");
+        const params = {};
+        paramArr.map((param) => {
+            const [key, val] = param.split("=");
+            params[key] = decodeURIComponent(val);
+        });
+        return params[param];
+    }
+</script>
+</body>
+
+</html>

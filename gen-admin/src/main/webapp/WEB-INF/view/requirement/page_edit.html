@@ -1,0 +1,28 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="pageForm">
+
+            <input type="hidden" id="id" value="${page.id}">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <#input id="pageName" name="页面名称" value="${page.pageName}" underline="true"/>
+                </div>
+                <div class="col-sm-12">
+                    <#input id="pageType" name="页面类型" value="${page.pageType}" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PageInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PageInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/requirement/page_info.js"></script>
+@}

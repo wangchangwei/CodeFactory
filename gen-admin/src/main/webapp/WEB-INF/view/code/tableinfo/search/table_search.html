@@ -1,0 +1,121 @@
+
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div id="fieldInfoDiv" class="form-horizontal row">
+            <div class="fixed-table-header col-sm-12" style="margin-right: 0px;">
+                <table id="tableSearch" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center; vertical-align: middle; " data-field="name">
+                            <div class="th-inner ">名称</div>
+
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="content">
+                            <div class="th-inner ">列名</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="isShowAdd">
+                            <div class="th-inner ">是否显示</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="queryMode">
+                            <div class="th-inner ">查询模式</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; " data-field="showType">
+                            <div class="th-inner ">查询类型</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; " data-field="dictName">
+                            <div class="th-inner ">字典名称</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @ for(tf in tableinfo.tableFields!){
+                    <tr id="fieldTr${tfLP.index}" class="fieldTr">
+                        <td style="display: none" type="hidden" data-field="id"><input style="display:none" type="text" class="form-control" name="id"  value="${tf.id}"></td>
+                        <td style="text-align: center; vertical-align: middle; " data-field="name">
+                            <div class="td-inner "><input type="text" class="form-control required" name="name"
+                                                          placeholder="代码字段名称" value="${tf.name}"></div>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="content">
+                            <div class="td-inner "><input type="text" class="form-control content" required
+                                                          placeholder="功能" value="${tf.content}"></div>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle; " data-field="isQuery">
+                            <label class="checkbox-inline i-checks">
+                                @if(tf.isQuery == 2){
+                                <input id="isQuery[${tfLP.index}]" type="checkbox" value="2" checked>
+                                @}else{
+                                <input id="isQuery[{tfLP.index}]" value="2"  type="checkbox">
+                                @}
+                            </label>
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle;"
+                            data-field="queryMode">
+                            <div class="td-inner ">
+                                <#select class="form-control" id="queryMode_${tf.id}" value="${tf.queryMode}" style="width:90px;">
+                                    <option value="1">=</option>
+                                    <option value="2">!=</option>
+                                    <option value="3">&gt;</option>
+                                    <option value="4">&gt;=</option>
+                                    <option value="5">&lt;</option>
+                                    <option value="6">&lt;=</option>
+                                    <option value="7">like</option>
+                                    <option value="8">lift like</option>
+                                    <option value="9">right like</option>
+                                    <option value="10">between</option>
+                                </#select>
+                            </div>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle;"
+                            data-field="showType">
+                            <div class="td-inner ">
+                                <#select class="form-control" id="showType_${tf.id}" value="${tf.showType}">
+                                    <option value="下拉">下拉</option>
+                                    <option value="单选">单选</option>
+                                    <option value="多选">多选</option>
+                                    <option value="日期">日期</option>
+                                </#select>
+                            </div>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="dictName">
+                            <div class="td-inner "><input type="text" class="form-control" value="${tf.dictName}"
+                                                          placeholder="字典名称"></div>
+                        </td>
+                    </tr>
+                    @}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="${ctxPath}/static/modular/code/tablefield/tablefield.js"></script>
+
+<script type="text/javascript">
+    Array.prototype.forEach.call(document.getElementsByClassName('content'), function (inputField) {
+        inputField.addEventListener('dblclick', function (e) {
+            let ajax = new $ax("/dict/translate/"+ e.target.value, function (data) {
+                $(e.target).parent().parent().parent().find('input[name=fieldName]').val(data.underline)
+                $(e.target).parent().parent().parent().find('input[name=name]').val(data.lowCamel)
+            });
+
+            ajax.start();
+        })
+    });
+
+    $(document).ready(function(){
+        $("tr").click(
+            function() {
+                $(this).css("background","#f3f3f4").siblings().css("background","#ffffff");
+            });
+    });
+
+</script>
+</script>

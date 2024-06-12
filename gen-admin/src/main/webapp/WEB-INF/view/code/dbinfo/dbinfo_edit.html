@@ -1,0 +1,28 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal"  id="dbinfoForm">
+            <input type="hidden" id="id" value="${dbinfo.id}">
+            <#input id="alias" name="别名" value="${dbinfo.alias}" />
+            <#select id="dbType" name="类型" value="${dbinfo.dbType}">
+            <option value="mysql">Mysql</option>
+            <option value="mysql8">Mysql8</option>
+            <option value="oracle">Oracle</option>
+            <option value="sqlserver">Sqlserver</option>
+            <option value="postgresql">Postgresql</option>
+            </#select>
+            <#input id="dbUrl" name="数据库地址" value="${dbinfo.dbUrl}" helpValue="jdbc:mysql://localhost:3306/abc?useSSL=false&useUnicode=true&characterEncoding=utf-8" />
+            <#input id="dbUserName" name="数据库账户" value="${dbinfo.dbUserName}" />
+            <#input id="dbPassword" name="连接密码" type ="text" value="${dbinfo.dbPassword}"/>
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="DbInfoInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="DbInfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/code/dbinfo/dbinfo_info.js"></script>
+@}

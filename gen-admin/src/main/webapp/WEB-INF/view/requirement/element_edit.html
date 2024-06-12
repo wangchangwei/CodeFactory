@@ -1,0 +1,45 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="elementForm">
+
+            <input type="hidden" id="id" value="${element.id}">
+            <input type="hidden" name="moduleId" value="${element.moduleId}" />
+            <input type="hidden" name="pageId"   value="${element.pageId}"  />
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <#input id="elementName" name="元素名称" value="${element.elementName}" underline="true"/>
+                </div>
+                <div class="col-sm-12">
+                    <#input id="elementType" name="元素类型" value="${element.elementType}" underline="true"/>
+                </div>
+                <div class="col-sm-12">
+                    <#input id="elementRules" name="元素规则" value="${element.elementRules}" underline="true"/>
+                </div>
+                <div class="col-sm-12">
+                    <#input id="checkType" name="选择类型" value="${element.checkType}" underline="true"/>
+                </div>
+                <div class="col-sm-12">
+                    <#input id="dictName" name="字典名称" value="${element.dictName}" underline="true"/>
+                </div>
+                <div class="col-sm-12">
+                    <#input id="interactiveMethods" name="交互方式" value="${element.interactiveMethods}" underline="true"/>
+                </div>
+                <div class="col-sm-12">
+                    <#input id="triggerEvent" name="触发事件" value="${element.triggerEvent}" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ElementInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ElementInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/requirement/element_info.js"></script>
+@}

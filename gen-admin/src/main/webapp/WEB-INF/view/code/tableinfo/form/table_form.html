@@ -1,0 +1,191 @@
+
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div id="fieldInfoDiv" class="form-horizontal row">
+            <div class="fixed-table-header col-sm-12" style="margin-right: 0px;">
+                <table id="tableForm" class="table table-bordered">
+                    <thead>
+
+                    <tr>
+                        <th style="text-align: center; vertical-align: middle; " data-field="name">
+                            <div class="th-inner ">名称</div>
+
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="content">
+                            <div class="th-inner ">功能</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="isShowAdd">
+                            <div class="th-inner ">增是否显示</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="isShowEdit">
+                            <div class="th-inner ">改是否显示</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="notNull">
+                            <div class="th-inner ">是否必填</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="minNum">
+                            <div class="th-inner ">最小值</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="maxNum">
+                            <div class="th-inner ">最大值</div>
+                        </th>
+
+                        <th style="text-align: center; vertical-align: middle; " data-field="showType">
+                            <div class="th-inner ">显示类型</div>
+                        </th>
+
+                        <th style="text-align: center; vertical-align: middle; " data-field="regexType">
+                            <div class="th-inner ">校验规则</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="dictType">
+                            <div class="th-inner ">字典类型</div>
+                        </th>
+                        <th style="text-align: center; vertical-align: middle; "
+                            data-field="dictName">
+                            <div class="th-inner ">字典名称</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @ for(tf in tableinfo.tableFields!){
+                    <tr id="fieldTr${tfLP.index}" class="fieldTr">
+                        <td style="display: none" type="hidden" data-field="id"><input style="display:none" type="text" class="form-control" name="id"  value="${tf.id}"></td>
+                        <td style="text-align: center; vertical-align: middle; " data-field="name">
+                            <div class="td-inner "><input type="text" class="form-control required" name="name"
+                                                          placeholder="代码字段名称" value="${tf.name}"></div>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="content">
+                            <div class="td-inner "><input type="text" class="form-control content" required
+                                                          placeholder="功能" value="${tf.content}"></div>
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="isShowAdd">
+                            <label class="checkbox-inline i-checks">
+                                @if(tf.isShowAdd == 2){
+                                <input id="isShowAdd[${tfLP.index}]" type="checkbox" checked value="2">
+                                @}else{
+                                <input id="isShowAdd{tfLP.index}"  type="checkbox" value="2">
+                                @}
+                            </label>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="isShowEdit">
+                            <label class="checkbox-inline i-checks">
+                                @if(tf.isShowEdit == 2){
+                                <input id="isShowEdit[${tfLP.index}]" type="checkbox" checked value="2">
+                                @}else{
+                                <input id="isShowEdit{tfLP.index}"  type="checkbox" value="2">
+                                @}
+                            </label>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="verifyModel.notNull">
+                            <label class="checkbox-inline i-checks">
+                                @if(tf.verifyModel !=null && tf.verifyModel.notNull == 2){
+                                <input id="verifyModel[${tfLP.index}].notNull" type="checkbox" value="2" checked>
+                                @}else{
+                                <input id="verifyModel[{tfLP.index}].notNull" value="2"  type="checkbox">
+                                @}
+                            </label>
+
+                        </td>
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="verifyModel.minNum">
+                            <div class="td-inner ">
+                                <input type="text" class="form-control required" name="verifyModel.minNum"
+                                                          placeholder="最小值" value="${tf.verifyModel.minNum}"></div>
+                        </td>
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="verifyModel.maxNum">
+                            <div class="td-inner ">
+                                <input type="text" class="form-control required" name="verifyModel.maxNum"
+                                       placeholder="最大值" value="${tf.verifyModel.maxNum}"></div>
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle;"
+                            data-field="showType">
+                            <div class="td-inner ">
+                                <#select class="form-control" id="showType_${tf.id}" value="${tf.showType}" style="width:90px;">
+                                <option value="文本">文本</option>
+                                <option value="下拉">下拉</option>
+                                <option value="多行文本">多行文本</option>
+                                <option value="单选">单选</option>
+                                <option value="多选">多选</option>
+                                <option value="日期">日期</option>
+                                <option value="文件">文件</option>
+                            </#select>
+                        </div>
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle;"
+                            data-field="verifyModel.regexType">
+                            <div class="td-inner ">
+                                <#select id="regexType_${tf.id}" value="${tf.verifyModel.regexType}" >
+                                    <option value="0">无</option>
+                                    <option value="1">邮箱</option>
+                                    <option value="2">手机</option>
+                                    <option value="3">电话</option>
+                                    <option value="4">身份证</option>
+                                 </#select>
+                        </div>
+                        </td>
+
+
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="dictType">
+                            <div class="td-inner ">
+                                <#select class="form-control" id="dictType_${tf.id}" value="${tf.dictType}" >
+                                <option value="0">无</option>
+                                <option value="1">枚举</option>
+                                <option value="2">字典</option>
+                                </#select>
+                        </div>
+                        </td>
+
+                        <td style="text-align: center; vertical-align: middle; "
+                            data-field="dictName">
+                            <div class="td-inner "><input type="text" class="form-control" value="${tf.dictName}"
+                                                          placeholder="字典名称"></div>
+                        </td>
+                         </tr>
+                    @}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="${ctxPath}/static/modular/code/tablefield/tablefield.js"></script>
+
+<script type="text/javascript">
+    Array.prototype.forEach.call(document.getElementsByClassName('content'), function (inputField) {
+        inputField.addEventListener('dblclick', function (e) {
+            let ajax = new $ax("/dict/translate/"+ e.target.value, function (data) {
+                $(e.target).parent().parent().parent().find('input[name=fieldName]').val(data.underline)
+                $(e.target).parent().parent().parent().find('input[name=name]').val(data.lowCamel)
+            });
+
+            ajax.start();
+        })
+    });
+
+    $(document).ready(function(){
+        $("tr").click(
+            function() {
+                $(this).css("background","#f3f3f4").siblings().css("background","#ffffff");
+            });
+    });
+
+</script>
+</script>

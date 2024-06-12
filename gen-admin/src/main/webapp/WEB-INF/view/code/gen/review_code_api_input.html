@@ -1,0 +1,59 @@
+@layout("/common/_container.html"){
+<link href="${ctxPath}/static/css/plugins/codemirror/codemirror.css" rel="stylesheet">
+<link href="${ctxPath}/static/css/plugins/codemirror/ambiance.css" rel="stylesheet">
+
+<div class="row" xmlns="">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>前端代码</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <#input id="url" name="接口地址" />
+                        </div>
+                        <div class="col-sm-5">
+                            <#input id="apiName" name="模块名称" />
+                        </div>
+                        <div class="col-sm-2">
+                            <button id="codeButton"  type="button" class="btn btn-primary mr10">
+                                <span style="padding: 5px 20px;">生成</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<script src="${ctxPath}/static/js/plugins/codemirror/codemirror.js"></script>
+<script src="${ctxPath}/static/js/plugins/codemirror/mode/javascript/javascript.js"></script>
+<script>
+    $(function (){
+        $('#codeButton').click(function (){
+            var url =  $('input[name=url]').val();
+            var apiName =  $('input[name=apiName]').val();
+            // var ajax = new $ax(Feng.ctxPath + '/eolink/data', function (data) {
+            //     $("#code").val(data.result);
+            //     CodeMirror.fromTextArea(document.getElementById("code"), {
+            //         lineNumbers: true,
+            //         matchBrackets: true,
+            //         styleActiveLine: true
+            //     });
+            // });
+            // ajax.set('url',url);
+            // ajax.set('apiName',apiName);
+            // ajax.start();
+            url = encodeURI(url);
+            window.open("/eolink/review_code_api?url="+url+"&apiName="+apiName);
+        });
+    });
+
+</script>
+@}
+
