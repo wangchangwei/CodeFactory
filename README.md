@@ -38,7 +38,7 @@
 1. 下载源码
 
 ```sh
-git clone https://github.com/wangchangwei/code_factory.git
+git clone https://github.com/wangchangwei/CodeFactory.git
 ```
 
 2. `db` 文件夹中有创建数据表结构的脚本 `init.sql`
@@ -68,7 +68,7 @@ filetree
 
 ### 开发的架构 
 
-请阅读[ARCHITECTURE.md](https://github.com/wangchangwei/code_factory/blob/master/ARCHITECTURE.md) 查阅为该项目的架构。
+请阅读[ARCHITECTURE.md](https://github.com/wangchangwei/CodeFactory/blob/master/ARCHITECTURE.md) 查阅为该项目的架构。
 
 ### 部署
 
@@ -93,15 +93,15 @@ docker run -d -p 7080:7080 镜像ID
 
 ### 使用到的框架
 
-- [xxxxxxx](https://getbootstrap.com)
-- [xxxxxxx](https://jquery.com)
-- [xxxxxxx](https://laravel.com)
+- [SpringBoot](https://getbootstrap.com)
+- [Beetl](https://www.kancloud.cn/xiandafu/beetl3_guide/1992542)
+- [Thymeleaf](https://www.thymeleaf.org/index.html)
 
 
 ### 作者
 
-Bilibili：胡说八道的小哑巴
-Email: qq276709159@163.com
+- Bilibili：胡说八道的小哑巴
+- Email: qq276709159@163.com
 
 ### 鸣谢
 
@@ -109,14 +109,14 @@ Email: qq276709159@163.com
 - [ai code](https://gitee.com/lemur/aicode)
 
 <!-- links -->
-[your-project-path]:wangchangwei/code_factory
-[contributors-shield]: https://img.shields.io/github/contributors/wangchangwei/code_factory.svg?style=flat-square
-[contributors-url]: https://github.com/wangchangwei/code_factory/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/wangchangwei/code_factory.svg?style=flat-square
-[forks-url]: https://github.com/wangchangwei/code_factory/network/members
-[stars-shield]: https://img.shields.io/github/stars/wangchangwei/code_factory.svg?style=flat-square
-[stars-url]: https://github.com/wangchangwei/code_factory/stargazers
-[issues-shield]: https://img.shields.io/github/issues/wangchangwei/code_factory.svg?style=flat-square
-[issues-url]: https://img.shields.io/github/issues/wangchangwei/code_factory.svg
-[license-shield]: https://img.shields.io/github/license/wangchangwei/code_factory.svg?style=flat-square
-[license-url]: https://github.com/wangchangwei/code_factory/blob/master/LICENSE.txt
+[your-project-path]:wangchangwei/CodeFactory
+[contributors-shield]: https://img.shields.io/github/contributors/wangchangwei/CodeFactory.svg?style=flat-square
+[contributors-url]: https://github.com/wangchangwei/CodeFactory/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/wangchangwei/CodeFactory.svg?style=flat-square
+[forks-url]: https://github.com/wangchangwei/CodeFactory/network/members
+[stars-shield]: https://img.shields.io/github/stars/wangchangwei/CodeFactory.svg?style=flat-square
+[stars-url]: https://github.com/wangchangwei/CodeFactory/stargazers
+[issues-shield]: https://img.shields.io/github/issues/wangchangwei/CodeFactory.svg?style=flat-square
+[issues-url]: https://img.shields.io/github/issues/wangchangwei/CodeFactory.svg
+[license-shield]: https://img.shields.io/github/license/wangchangwei/CodeFactory.svg?style=flat-square
+[license-url]: https://github.com/wangchangwei/CodeFactory/blob/master/LICENSE.txt
