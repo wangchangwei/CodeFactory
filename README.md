@@ -9,19 +9,21 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
+<!-- PROJECT LOGO -->
+
+<br />
 
 <p align="center">
-
-
-  <h3 align="center">代码工厂</h3>
+<p>
+  <h1 align="center">代码工厂</h1>
   <p align="center">
     根据代码模板生产各种代码。基于前后端不不不不不不不不分离。<br />技术栈：Spring Boot2+Beetl+mysql
     <br />
       能够生成需求文档 markdown、接口文档 swagger.json、程序代码（vue、react、java）等
   </p>
+</p></p>
 
-</p>
 
 ### 上手指南
 
@@ -66,7 +68,7 @@ filetree
 
 ### 开发的架构 
 
-请阅读[ARCHITECTURE.md](https://github.com/shaojintian/Best_README_template/blob/master/ARCHITECTURE.md) 查阅为该项目的架构。
+请阅读[ARCHITECTURE.md](https://github.com/wangchangwei/code_factory/blob/master/ARCHITECTURE.md) 查阅为该项目的架构。
 
 ### 部署
 
@@ -105,3 +107,16 @@ Email: qq276709159@163.com
 
 - [Guns Admin](https://github.com/stylefeng/Guns)
 - [ai code](https://gitee.com/lemur/aicode)
+
+<!-- links -->
+[your-project-path]:wangchangwei/code_factory
+[contributors-shield]: https://img.shields.io/github/contributors/wangchangwei/code_factory.svg?style=flat-square
+[contributors-url]: https://github.com/wangchangwei/code_factory/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/wangchangwei/code_factory.svg?style=flat-square
+[forks-url]: https://github.com/wangchangwei/code_factory/network/members
+[stars-shield]: https://img.shields.io/github/stars/wangchangwei/code_factory.svg?style=flat-square
+[stars-url]: https://github.com/wangchangwei/code_factory/stargazers
+[issues-shield]: https://img.shields.io/github/issues/wangchangwei/code_factory.svg?style=flat-square
+[issues-url]: https://img.shields.io/github/issues/wangchangwei/code_factory.svg
+[license-shield]: https://img.shields.io/github/license/wangchangwei/code_factory.svg?style=flat-square
+[license-url]: https://github.com/wangchangwei/code_factory/blob/master/LICENSE.txt
