@@ -1,8 +1,4 @@
-# 代码工厂
-
-
-
-<!-- PROJECT SHIELDS -->
+# 🏭 代码工厂
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -10,106 +6,99 @@
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 
-<!-- PROJECT LOGO -->
+## 🚀 项目简介
 
-<br />
+代码工厂是一个基于Spring Boot2 + Beetl + MySQL的代码生成工具，能够根据代码模板自动生成各种代码。它支持生成需求文档、接口文档以及多种编程语言的代码。
 
-<p align="center">
-<p>
-  <h1 align="center">代码工厂</h1>
-  <p align="center">
-    根据代码模板生产各种代码。基于前后端不不不不不不不不分离。<br />技术栈：Spring Boot2+Beetl+mysql
-    <br />
-      能够生成需求文档 markdown、接口文档 swagger.json、程序代码（vue、react、java）等
-  </p>
-</p></p>
+### ✨ 主要特性
 
+- 📝 支持生成Markdown格式的需求文档
+- 📊 支持生成Swagger格式的接口文档
+- 💻 支持生成多种编程语言代码（Vue、React、Java等）
+- 🎨 基于前后端不分离架构
+- 🔧 提供Docker部署支持
 
-### 上手指南
+### 🎯 应用场景
 
-###### 开发前的配置要求
+- 快速生成项目基础代码
+- 自动生成API文档
+- 生成项目需求文档
+- 提高开发效率，减少重复工作
 
-1. 一双干净小巧的手
-2. 一台跟随多年的笔记本
-3. 一杯85°的拿铁
+## 🚀 快速开始
 
-###### **安装步骤**
+### 📋 环境要求
 
-1. 下载源码
+- JDK 1.8+
+- Maven 3.6+
+- MySQL 5.7+
+- Docker（可选）
 
-```sh
+### 🔧 安装步骤
+
+1. 克隆项目
+```bash
 git clone https://github.com/wangchangwei/CodeFactory.git
 ```
 
-2. `db` 文件夹中有创建数据表结构的脚本 `init.sql`
-3. `db` 文件夹中有初始化数据执行的 `data.sql`
-4. 修改 `gen-admin/resources/application.yml` 数据库配置项
-5. 启动在`gen-admin` 模块下 `cn.afterturn.gen.GenApplication` 
-6. 访问端口默认7080，http://127.0.0.1:7080
-7. 账号密码：admin/123456
+2. 初始化数据库
+   - 执行 `db/init.sql` 创建数据表
+   - 执行 `db/data.sql` 初始化数据
 
-### 文件目录说明
+3. 配置数据库
+   - 修改 `gen-admin/resources/application.yml` 中的数据库配置
 
-eg:
+4. 启动应用
+   - 运行 `gen-admin` 模块下的 `cn.afterturn.gen.GenApplication`
+   - 默认访问地址：http://127.0.0.1:7080
+   - 默认账号：admin/123456
 
-```
-filetree 
-|-- Dockerfile
-|-- LICENSE
-|-- README.md
-|-- db
-|-- gen-admin
-|-- gen-core
-|-- guns-core
-|-- lemur-gen-parent.iml
-|-- logs
-`-- pom.xml
-```
+### 🐳 Docker部署
 
-### 开发的架构 
-
-请阅读[ARCHITECTURE.md](https://github.com/wangchangwei/CodeFactory/blob/master/ARCHITECTURE.md) 查阅为该项目的架构。
-
-### 部署
-
-**原生部署**
-
-```sh
-mvn clean package
-java -jar ./gen-admin/target/gen.jar
-```
-
-**Docker 部署**
-
-```sh
+```bash
 mvn clean package
 docker build .
 docker run -d -p 7080:7080 镜像ID
 ```
 
+## 🔍 技术栈比较
 
+| 特性 | 代码工厂 | 其他类似工具 |
+|------|---------|------------|
+| 代码生成 | ✅ 支持多种语言 | ⚠️ 通常只支持特定语言 |
+| 文档生成 | ✅ 支持Markdown和Swagger | ⚠️ 通常只支持一种格式 |
+| 部署方式 | ✅ 支持原生和Docker | ⚠️ 通常只支持一种方式 |
+| 学习曲线 | ⭐ 中等 | ⭐ 通常较陡峭 |
+| 社区支持 | ⭐ 活跃 | ⭐ 因项目而异 |
 
-****
+## 📚 项目结构
 
-### 使用到的框架
+```
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── db
+├── gen-admin
+├── gen-core
+├── guns-core
+├── logs
+└── pom.xml
+```
 
-- [SpringBoot](https://getbootstrap.com)
-- [Beetl](https://www.kancloud.cn/xiandafu/beetl3_guide/1992542)
-- [Thymeleaf](https://www.thymeleaf.org/index.html)
+## 🤝 贡献指南
 
+欢迎提交Issue和Pull Request来帮助改进项目！
 
-### 作者
+## 📄 许可证
 
-- Bilibili：胡说八道的小哑巴
-- Email: qq276709159@163.com
+本项目采用MIT许可证 - 详见 [LICENSE](LICENSE) 文件
 
-### 鸣谢
+## 📞 联系方式
 
-- [Guns Admin](https://github.com/stylefeng/Guns)
-- [ai code](https://gitee.com/lemur/aicode)
+- 📧 Email: qq276709159@163.com
+- 📺 Bilibili: 胡说八道的小哑巴
 
 <!-- links -->
-[your-project-path]:wangchangwei/CodeFactory
 [contributors-shield]: https://img.shields.io/github/contributors/wangchangwei/CodeFactory.svg?style=flat-square
 [contributors-url]: https://github.com/wangchangwei/CodeFactory/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/wangchangwei/CodeFactory.svg?style=flat-square
@@ -119,4 +108,4 @@ docker run -d -p 7080:7080 镜像ID
 [issues-shield]: https://img.shields.io/github/issues/wangchangwei/CodeFactory.svg?style=flat-square
 [issues-url]: https://img.shields.io/github/issues/wangchangwei/CodeFactory.svg
 [license-shield]: https://img.shields.io/github/license/wangchangwei/CodeFactory.svg?style=flat-square
-[license-url]: https://github.com/wangchangwei/CodeFactory/blob/master/LICENSE.txt
+[license-url]: https://github.com/wangchangwei/CodeFactory/blob/master/LICENSE.txt 
