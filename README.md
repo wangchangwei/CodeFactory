@@ -79,13 +79,70 @@ mvn clean package
 java -jar ./gen-admin/target/gen.jar
 ```
 
-**Docker 部署**
+**Docker 部署（单容器）**
 
 ```sh
 mvn clean package
-docker build .
-docker run -d -p 7080:7080 镜像ID
+docker build -t code-factory:latest .
+docker run -d -p 7080:7080 code-factory:latest
 ```
+
+**Docker 部署（使用 docker-compose，推荐用于本地开发/演示）**
+
+下面为一个最小示例 `docker-compose.yml`，包含 MySQL 与 `gen-admin` 服务：
+
+```yaml
+version: '3.8'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: codefactory
+      MYSQL_USER: cfuser
+      MYSQL_PASSWORD: cfpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  gen-admin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: code-factory:latest
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/codefactory?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      SPRING_DATASOURCE_USERNAME: cfuser
+      SPRING_DATASOURCE_PASSWORD: cfpass
+    ports:
+      - "7080:7080"
+
+volumes:
+  db_data:
+```
+
+使用步骤：
+
+- 在项目根目录执行打包并构建镜像（`docker-compose` 也会在需要时构建）：
+
+```sh
+mvn clean package
+docker-compose up -d --build
+```
+
+- 停止并删除容器与网络：
+
+```sh
+docker-compose down
+```
+
+说明：
+- 请确保 `gen-admin/src/main/resources/application.yml`（或 `gen-admin/resources/application.yml`）中的数据库配置与上面 `docker-compose.yml` 的环境变量一致，或通过环境变量覆盖对应配置。
+- 默认访问地址：`http://127.0.0.1:7080`
+- 默认账号：`admin` / `123456`
 
 
 
