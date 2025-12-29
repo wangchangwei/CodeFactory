@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  app:
+    image: ghcr.io/wangchangwei/code-factory/codefactor-app:latest
+    container_name: gen-code-app
+    ports:
+      - "7080:7080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/gen_code?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=UTF-8
+      SPRING_DATASOURCE_USERNAME: root                  # 直接用 root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD} # 用同一个密码
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: gen-code-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}       # 只保留这一个密码
+      MYSQL_DATABASE: gen_code                           # 自动创建数据库
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d              # 初始化脚本保持不变
+    networks:
+      - app-network
+
+volumes:
+  mysql-data:
+
+networks:
+  app-network:
+    driver: bridge
