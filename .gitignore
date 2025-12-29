@@ -20,3 +20,4 @@ logs/sys-info.2025-12-25.log
 logs/sys-info.2025-12-28.log
 logs/sys-info.log
 .vscode/settings.json
+.env
